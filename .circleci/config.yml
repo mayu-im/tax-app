@@ -1,11 +1,16 @@
 version: 2.1
+
+# このプロジェクトで実行するジョブの定義
 jobs:
-test:
-docker:
-- image: cimg/node:18.14.0
-steps:
-- checkout
+  test:
+    docker:
+      - image: cimg/node:18.14.0
+    steps:
+      - checkout
+      - run: echo "this is the test job"
+
+# ジョブの実行順の指定
 workflows:
-test:
-jobs:
-- test
+  test:
+    jobs:
+      - test
